@@ -1,0 +1,146 @@
+.section {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-saira), sans-serif;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 60px 40px;
+  gap: 32px;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.square {
+  width: 14px;
+  height: 14px;
+  background-color: #d5fe00;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #000000;
+  letter-spacing: 0.05em;
+}
+
+.headingPrimary {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.4;
+  max-width: 760px;
+}
+
+.headingSecondary {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.4;
+  max-width: 760px;
+}
+
+/* Contact Button */
+.contactBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px;
+  color: #000000;
+  font-size: 0.9rem;
+  font-family: var(--font-saira), sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+
+.corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: #000000;
+  border-style: solid;
+}
+
+.corner[data-pos="tl"] {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+.corner[data-pos="tr"] {
+  top: 0;
+  right: 0;
+  border-width: 1px 1px 0 0;
+}
+.corner[data-pos="bl"] {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1px 1px;
+}
+.corner[data-pos="br"] {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+/* Ticker */
+.ticker {
+  background-color: #000000;
+  padding: 24px 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.tickerTrack {
+  display: flex;
+  width: max-content;
+  animation: ticker 18s linear infinite;
+}
+
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #ffffff;
+  white-space: nowrap;
+  padding-right: 16px;
+  font-family: var(--font-saira), sans-serif;
+}
+
+.tickerDot {
+  width: 10px;
+  height: 10px;
+  background-color: #d5fe00;
+  display: inline-block;
+  margin: 0 32px;
+  flex-shrink: 0;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
