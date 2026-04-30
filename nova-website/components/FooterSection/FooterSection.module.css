@@ -1,0 +1,165 @@
+.footer {
+  position: relative;
+  background-color: #000000;
+  overflow: hidden;
+  padding: 60px 60px 0;
+  font-family: var(--font-saira), sans-serif;
+}
+
+/* Background image */
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-image: url("/public/images/footer-bg.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Floating dark card */
+.card {
+  position: relative;
+  z-index: 1;
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  padding: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Left */
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.socials {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.socialLink {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.socialLink:hover {
+  color: #d5fe00;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* Right - Form */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formGroup {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #444444;
+  padding: 8px 0;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-family: var(--font-saira), sans-serif;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #666666;
+}
+
+.input:focus {
+  border-bottom-color: #ffffff;
+}
+
+/* Contact Button */
+.contactBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-family: var(--font-saira), sans-serif;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  align-self: flex-start;
+}
+
+.corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: #ffffff;
+  border-style: solid;
+}
+
+.corner[data-pos="tl"] {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+.corner[data-pos="tr"] {
+  top: 0;
+  right: 0;
+  border-width: 1px 1px 0 0;
+}
+.corner[data-pos="bl"] {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1px 1px;
+}
+.corner[data-pos="br"] {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+/* Giant NOVA wordmark at bottom */
+.wordmark {
+  position: relative;
+  z-index: 1;
+  margin-top: 40px;
+  overflow: hidden;
+  height: 180px;
+}
+
+.wordmarkText {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(10);
+  position: absolute;
+  bottom: 0;
+}

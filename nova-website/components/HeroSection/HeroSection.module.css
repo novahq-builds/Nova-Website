@@ -1,0 +1,112 @@
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* ── Navbar ── */
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+}
+
+.logo {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.navLink {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: #d5fe00;
+}
+
+/* ── Right-side tagline ── */
+.tagline {
+  position: absolute;
+  top: 33%;
+  right: 2rem;
+  z-index: 20;
+  max-width: 420px;
+  text-align: right;
+  transform: translateY(-25%);
+}
+
+.taglineText {
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1.7;
+}
+
+/* ── CTA button ── */
+.ctaWrapper {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ctaButton {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  color: #fff;
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Corner bracket decorators */
+.cornerTL,
+.cornerTR,
+.cornerBL,
+.cornerBR {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border-color: #fff;
+  border-style: solid;
+}
+
+.cornerTL { top: 0; left: 0;    border-width: 1px 0 0 1px; }
+.cornerTR { top: 0; right: 0;   border-width: 1px 1px 0 0; }
+.cornerBL { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+.cornerBR { bottom: 0; right: 0;border-width: 0 1px 1px 0; }
+
+/* ── Wordmark ── */
+.wordmarkWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  transform: translateY(18%);
+}
+
+.wordmark {
+  width: 72vw;
+  height: auto;
+  display: block;
+}
