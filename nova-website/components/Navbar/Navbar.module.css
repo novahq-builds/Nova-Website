@@ -22,9 +22,9 @@
 
 /* ── Compressed: floating centered pill ── */
 .compressed {
-  top: 12px;
+  top: 10px;
   left: 50%;
-  width: clamp(480px, 62vw, 860px);
+  width: clamp(220px, 45vw, 580px);
   padding: 0.55rem 1.75rem;
   background-color: #0d0d0d;
   border-radius: 10px;
