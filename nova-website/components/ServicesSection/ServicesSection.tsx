@@ -32,34 +32,37 @@ const services = [
 
 const SCROLL_PER_PANEL_VH = 1.5;
 const SNAP_DURATION_MS = 520;
-const SNAP_IDLE_MS = 150; // ms after scroll stops before snap fires
+const SNAP_IDLE_MS = 150;
 
 export default function ServicesSection() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const fillRefs = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number | null>(null);
   const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const displayProgressRef = useRef(0); // decoupled from scroll — drives actual card positions
+  const displayProgressRef = useRef(0);
 
   useEffect(() => {
-    // Writes the current displayProgress value to all card transforms
     const applyProgress = (p: number) => {
       cardRefs.current.forEach((el, i) => {
-        if (el) el.style.transform = `translateX(${(i - p) * 100}%)`;
+        if (el) el.style.transform = "translateX(" + (i - p) * 100 + "%)";
+      });
+      fillRefs.current.forEach((el, i) => {
+        if (el) {
+          // segment i is full when p >= i+1, empty when p <= i
+          const fill = Math.min(Math.max(p - i + 1, 0), 1);
+          el.style.transform = "scaleX(" + fill + ")";
+        }
       });
     };
 
-    // Easing: ease-out cubic
     const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
-    // After scrolling stops, animate displayProgress to the nearest integer (0,1,2,3)
     const snapToNearest = () => {
       const start = displayProgressRef.current;
       const target = Math.round(start);
       if (Math.abs(start - target) < 0.001) return;
-
       const startTime = performance.now();
-
       const animate = (now: number) => {
         const t = Math.min((now - startTime) / SNAP_DURATION_MS, 1);
         const value = start + (target - start) * easeOut(t);
@@ -69,32 +72,29 @@ export default function ServicesSection() {
           rafRef.current = requestAnimationFrame(animate);
         }
       };
-
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(animate);
     };
 
     const onScroll = () => {
-      // Cancel any in-flight snap animation and reset the idle timer
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       if (scrollTimerRef.current !== null) clearTimeout(scrollTimerRef.current);
-
       rafRef.current = requestAnimationFrame(() => {
         if (!wrapperRef.current) return;
         const rect = wrapperRef.current.getBoundingClientRect();
         const scrolled = -rect.top;
         const scrollPerPanel = window.innerHeight * SCROLL_PER_PANEL_VH;
-        const raw = scrolled / scrollPerPanel;
-        const progress = Math.min(Math.max(raw, 0), services.length - 1);
-
+        const progress = Math.min(
+          Math.max(scrolled / scrollPerPanel, 0),
+          services.length - 1
+        );
         displayProgressRef.current = progress;
         applyProgress(progress);
-
-        // Snap once scrolling is idle
         scrollTimerRef.current = setTimeout(snapToNearest, SNAP_IDLE_MS);
       });
     };
 
+    applyProgress(0);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -103,9 +103,8 @@ export default function ServicesSection() {
     };
   }, []);
 
-  const wrapperHeight = `${
-    (services.length - 1) * SCROLL_PER_PANEL_VH * 100 + 100
-  }vh`;
+  const wrapperHeight =
+    (services.length - 1) * SCROLL_PER_PANEL_VH * 100 + 100 + "vh";
 
   return (
     <div
@@ -129,7 +128,7 @@ export default function ServicesSection() {
                 cardRefs.current[i] = el;
               }}
               className={styles.card}
-              style={{ transform: `translateX(${i * 100}%)` }}
+              style={{ transform: "translateX(" + i * 100 + "%)" }}
             >
               <span className={styles.watermark}>{service.number}</span>
               <div className={styles.cardContent}>
@@ -137,6 +136,21 @@ export default function ServicesSection() {
                 <h3 className={styles.title}>{service.title}</h3>
                 <p className={styles.description}>{service.description}</p>
               </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Progress bar */}
+        <div className={styles.progressBar}>
+          {services.map((_, i) => (
+            <div key={i} className={styles.progressSegment}>
+              <div
+                ref={(el) => {
+                  fillRefs.current[i] = el;
+                }}
+                className={styles.progressFill}
+                style={{ transform: "scaleX(0)" }}
+              />
             </div>
           ))}
         </div>
