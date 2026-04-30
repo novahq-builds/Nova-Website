@@ -1,32 +1,39 @@
+/* ── Base: full-width transparent (top of page) ── */
 .nav {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 2rem;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    padding 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease,
-    backdrop-filter 0.35s ease;
+  background-color: transparent;
+  border-radius: 0;
+  box-sizing: border-box;
+  transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    left 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── States ── */
+/* ── Compressed: floating centered pill ── */
+.compressed {
+  top: 12px;
+  left: 50%;
+  width: clamp(480px, 62vw, 860px);
+  padding: 0.55rem 1.75rem;
+  background-color: #0d0d0d;
+  border-radius: 10px;
+  transform: translateX(-50%);
+}
 
-/* Slide up off-screen when scrolling down past hero */
+/* ── Hidden: slides off the top ── */
 .hidden {
   transform: translateY(-110%);
-}
-
-/* Compressed: tighter padding + frosted dark backdrop when scrolling up */
-.compressed {
-  padding: 0.65rem 2rem;
-  background-color: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* ── Logo ── */
@@ -35,13 +42,13 @@
   height: 2.75rem;
   display: block;
   flex-shrink: 0;
-  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logoCompressed {
-  width: 2rem;
-  height: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
 }
 
 /* ── Links ── */
