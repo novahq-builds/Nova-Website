@@ -47,7 +47,7 @@
 .tagline {
   position: absolute;
   top: 33%;
-  right: 2rem;
+  right: 4rem; /* was: 2rem */
   z-index: 20;
   max-width: 420px;
   text-align: right;
