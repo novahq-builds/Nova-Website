@@ -1,14 +1,14 @@
 /* ── Base: full-width transparent (top of page) ── */
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 1vw;
+  left: 1vw;
   width: 100%;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 4rem 1.5rem 2rem;
   background-color: transparent;
   border-radius: 0;
   box-sizing: border-box;

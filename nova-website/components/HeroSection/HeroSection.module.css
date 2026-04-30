@@ -91,16 +91,32 @@
   border-style: solid;
 }
 
-.cornerTL { top: 0; left: 0;    border-width: 1px 0 0 1px; }
-.cornerTR { top: 0; right: 0;   border-width: 1px 1px 0 0; }
-.cornerBL { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
-.cornerBR { bottom: 0; right: 0;border-width: 0 1px 1px 0; }
+.cornerTL {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+.cornerTR {
+  top: 0;
+  right: 0;
+  border-width: 1px 1px 0 0;
+}
+.cornerBL {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1px 1px;
+}
+.cornerBR {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
 
 /* ── Wordmark ── */
 .wordmarkWrapper {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 4vw;
   z-index: 10;
   transform: translateY(18%);
 }
