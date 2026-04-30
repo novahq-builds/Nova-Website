@@ -119,13 +119,6 @@ export default function ServicesSection() {
             <span className={styles.square} />
             <span className={styles.label}>Our Services</span>
           </div>
-          <a href="#contact" className={styles.contactBtn}>
-            <span className={styles.corner} data-pos="tl" />
-            <span className={styles.corner} data-pos="tr" />
-            Contact Us
-            <span className={styles.corner} data-pos="bl" />
-            <span className={styles.corner} data-pos="br" />
-          </a>
         </div>
 
         <div className={styles.cardsViewport}>
