@@ -1,14 +1,14 @@
 /* ── Base: full-width transparent (top of page) ── */
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 1vw;
+  left: 1vw;
   width: 100%;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 4rem 1.5rem 2rem;
   background-color: transparent;
   border-radius: 0;
   box-sizing: border-box;
@@ -22,9 +22,9 @@
 
 /* ── Compressed: floating centered pill ── */
 .compressed {
-  top: 12px;
+  top: 10px;
   left: 50%;
-  width: clamp(480px, 62vw, 860px);
+  width: clamp(220px, 35vw, 580px);
   padding: 0.55rem 1.75rem;
   background-color: #0d0d0d;
   border-radius: 10px;

@@ -16,7 +16,7 @@ export default function HeroSection() {
       {/* Right-side tagline + CTA */}
       <div className={styles.tagline}>
         <p className={styles.taglineText}>
-          <em>Digital solutions studio</em> built for brands that want to
+          <em>Digital solutions studio </em> built for brands that want to
           stand&nbsp;out, scale&nbsp;up, and ship&nbsp;fast.
         </p>
         <div className={styles.ctaWrapper}>

@@ -22,14 +22,6 @@ export default function WhyUsSection() {
           with bad websites, forgettable brands, and software that just barely
           works.
         </p>
-
-        <a href="#contact" className={styles.contactBtn}>
-          <span className={styles.corner} data-pos="tl" />
-          <span className={styles.corner} data-pos="tr" />
-          Contact Us
-          <span className={styles.corner} data-pos="bl" />
-          <span className={styles.corner} data-pos="br" />
-        </a>
       </div>
 
       {/* Ticker Bar */}
@@ -42,7 +34,7 @@ export default function WhyUsSection() {
                 {item}
                 <span className={styles.tickerDot}></span>
               </span>
-            )),
+            ))
           )}
         </div>
       </div>
