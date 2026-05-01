@@ -49,6 +49,11 @@ export default function Navbar() {
       />
       <ul className={styles.navLinks}>
         <li>
+          <a href="#about" className={styles.navLink}>
+            About Us
+          </a>
+        </li>
+        <li>
           <a href="#services" className={styles.navLink}>
             Services
           </a>
@@ -59,10 +64,11 @@ export default function Navbar() {
           </a>
         </li>
         <li>
-          <a href="#about" className={styles.navLink}>
-            About Us
+          <a href="#work" className={styles.navLink}>
+            Work
           </a>
         </li>
+
         <li>
           <a href="#contact" className={styles.navLink}>
             Contact Us
