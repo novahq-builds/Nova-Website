@@ -17,7 +17,6 @@ export default function WhyUsSection() {
 
   return (
     <section className={styles.section}>
-      {/* Main Content */}
       <div className={styles.content}>
         <motion.div
           className={styles.labelRow}
@@ -31,17 +30,23 @@ export default function WhyUsSection() {
           <span className={styles.label}>Why Us</span>
         </motion.div>
 
-        <motion.h2
-          className={styles.headingPrimary}
+        {/* Two GIFs side by side */}
+        <motion.div
+          className={styles.gifRow}
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          custom={0.15}
+          custom={0.1}
         >
-          We could list a hundred reasons why Nova is the right choice. But
-          honestly? Our work does the talking.
-        </motion.h2>
+          <div className={styles.gifItem}>
+            <img
+              src="/images/thinking.svg"
+              alt="Thinking"
+              className={styles.gif}
+            />
+          </div>
+        </motion.div>
 
         <motion.p
           className={styles.headingSecondary}
@@ -49,28 +54,12 @@ export default function WhyUsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          custom={0.3}
+          custom={0.35}
         >
           We started Nova because we were tired of seeing great businesses stuck
           with bad websites, forgettable brands, and software that just barely
           works.
         </motion.p>
-
-        <motion.a
-          href="#contact"
-          className={styles.contactBtn}
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          custom={0.45}
-        >
-          <span className={styles.corner} data-pos="tl" />
-          <span className={styles.corner} data-pos="tr" />
-          Contact Us
-          <span className={styles.corner} data-pos="bl" />
-          <span className={styles.corner} data-pos="br" />
-        </motion.a>
       </div>
 
       {/* Ticker Bar */}

@@ -50,7 +50,7 @@ export default function HeroSection() {
           animate="visible"
           custom={0.5}
         >
-          <em>Digital solutions studio</em> built for brands that want to
+          <em>Digital solutions studio </em> built for brands that want to
           stand&nbsp;out, scale&nbsp;up, and ship&nbsp;fast.
         </motion.p>
 

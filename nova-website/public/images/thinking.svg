@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110" width="110" height="110">
+  <style>
+    @keyframes ripple {
+      0%   { r: 10; opacity: 0.8; }
+      100% { r: 40; opacity: 0; }
+    }
+    @keyframes floatQ1 {
+      0%        { opacity: 0; transform: translateY(8px); }
+      20%, 60%  { opacity: 1; transform: translateY(0px); }
+      100%      { opacity: 0; transform: translateY(-8px); }
+    }
+    @keyframes floatQ2 {
+      0%        { opacity: 0; transform: translateY(8px); }
+      20%, 60%  { opacity: 1; transform: translateY(0px); }
+      100%      { opacity: 0; transform: translateY(-8px); }
+    }
+    @keyframes floatQ3 {
+      0%        { opacity: 0; transform: translateY(8px); }
+      20%, 60%  { opacity: 1; transform: translateY(0px); }
+      100%      { opacity: 0; transform: translateY(-8px); }
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.2; r: 3; }
+      50%      { opacity: 1;   r: 4.5; }
+    }
+    .r1 { fill: none; stroke: #D5FE00; stroke-width: 1.5; animation: ripple 3s ease-out infinite 0s; transform-origin: 55px 52px; }
+    .r2 { fill: none; stroke: #D5FE00; stroke-width: 1.5; animation: ripple 3s ease-out infinite 1s; transform-origin: 55px 52px; }
+    .r3 { fill: none; stroke: #D5FE00; stroke-width: 1.5; animation: ripple 3s ease-out infinite 2s; transform-origin: 55px 52px; }
+    .q1 { animation: floatQ1 3.6s ease-in-out infinite 0s;   transform-origin: 35px 42px; }
+    .q2 { animation: floatQ2 3.6s ease-in-out infinite 1.2s; transform-origin: 55px 38px; }
+    .q3 { animation: floatQ3 3.6s ease-in-out infinite 2.4s; transform-origin: 74px 42px; }
+    .dp1 { animation: dotPulse 1.4s ease-in-out infinite 0s; }
+    .dp2 { animation: dotPulse 1.4s ease-in-out infinite 0.45s; }
+    .dp3 { animation: dotPulse 1.4s ease-in-out infinite 0.9s; }
+  </style>
+
+  <rect width="110" height="110" rx="22" fill="#000000"/>
+
+  <!-- Ripple rings from center -->
+  <circle class="r1" cx="55" cy="52" r="10"/>
+  <circle class="r2" cx="55" cy="52" r="10"/>
+  <circle class="r3" cx="55" cy="52" r="10"/>
+
+  <!-- Center dot -->
+  <circle cx="55" cy="52" r="5" fill="#D5FE00"/>
+
+  <!-- Floating question marks -->
+  <text class="q1" x="30" y="46" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#ffffff">?</text>
+  <text class="q2" x="52" y="40" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#D5FE00">?</text>
+  <text class="q3" x="71" y="46" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#ffffff">?</text>
+
+  <!-- Thinking dots at bottom -->
+  <circle class="dp1" cx="39" cy="78" r="3" fill="#D5FE00"/>
+  <circle class="dp2" cx="55" cy="78" r="3" fill="#D5FE00"/>
+  <circle class="dp3" cx="71" cy="78" r="3" fill="#D5FE00"/>
+</svg>
