@@ -4,19 +4,21 @@ import styles from "./HeroSection.module.css";
 export default function HeroSection() {
   return (
     <section className={styles.section}>
-      {/* Background */}
-      <Image
-        src="/images/hero-bg.png"
-        alt=""
-        fill
-        className="object-cover object-center"
-        priority
-      />
+      {/* Background — continuously fading via CSS animation */}
+      <div className={styles.bgWrapper}>
+        <Image
+          src="/images/hero-bg.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+          priority
+        />
+      </div>
 
       {/* Right-side tagline + CTA */}
       <div className={styles.tagline}>
         <p className={styles.taglineText}>
-          <em>Digital solutions studio </em> built for brands that want to
+          <em>Digital solutions studio</em> built for brands that want to
           stand&nbsp;out, scale&nbsp;up, and ship&nbsp;fast.
         </p>
         <div className={styles.ctaWrapper}>

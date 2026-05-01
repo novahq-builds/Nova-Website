@@ -126,3 +126,25 @@
   height: auto;
   display: block;
 }
+
+/* Add this to HeroSection.module.css */
+
+/* Wrapper that holds the background image */
+.bgWrapper {
+  position: absolute;
+  inset: 0;
+  animation: bgFade 6s ease-in-out infinite;
+}
+
+/* Continuous fade in/out */
+@keyframes bgFade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
