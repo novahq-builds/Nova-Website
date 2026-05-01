@@ -27,7 +27,13 @@ export default function FooterSection() {
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
               </svg>
             </a>
-            <a href="#" aria-label="Instagram" className={styles.socialLink}>
+            <a
+              href="https://www.instagram.com/novahq.builds?igsh=MTg3bXV3YzdqdWM3aA%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className={styles.socialLink}
+            >
               <svg
                 width="22"
                 height="22"
