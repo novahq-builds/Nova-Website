@@ -1,10 +1,22 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import styles from "./HeroSection.module.css";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (delay: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay },
+  }),
+};
 
 export default function HeroSection() {
   return (
     <section className={styles.section}>
-      {/* Background — continuously fading via CSS animation */}
+      {/* Background — continuously fading */}
       <div className={styles.bgWrapper}>
         <Image
           src="/images/hero-bg.png"
@@ -17,11 +29,24 @@ export default function HeroSection() {
 
       {/* Right-side tagline + CTA */}
       <div className={styles.tagline}>
-        <p className={styles.taglineText}>
+        <motion.p
+          className={styles.taglineText}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.3}
+        >
           <em>Digital solutions studio</em> built for brands that want to
           stand&nbsp;out, scale&nbsp;up, and ship&nbsp;fast.
-        </p>
-        <div className={styles.ctaWrapper}>
+        </motion.p>
+
+        <motion.div
+          className={styles.ctaWrapper}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.55}
+        >
           <a href="#contact" className={styles.ctaButton}>
             <span className={styles.cornerTL} />
             <span className={styles.cornerTR} />
@@ -29,17 +54,22 @@ export default function HeroSection() {
             <span className={styles.cornerBR} />
             Contact Us
           </a>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Large wordmark — bottom-left, partially clipped */}
-      <div className={styles.wordmarkWrapper}>
+      {/* Large wordmark */}
+      <motion.div
+        className={styles.wordmarkWrapper}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 0.7 }}
+      >
         <img
           src="/icons/nova-wordmark.svg"
           alt="iNOVA"
           className={styles.wordmark}
         />
-      </div>
+      </motion.div>
     </section>
   );
 }
