@@ -27,14 +27,28 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Right-side tagline + CTA */}
+      {/* NOVA wordmark — fades in first, slowly */}
+      <motion.div
+        className={styles.wordmarkWrapper}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2.2, ease: "easeOut", delay: 0 }}
+      >
+        <img
+          src="/icons/nova-wordmark.svg"
+          alt="iNOVA"
+          className={styles.wordmark}
+        />
+      </motion.div>
+
+      {/* Tagline + CTA — come in during the wordmark fade */}
       <div className={styles.tagline}>
         <motion.p
           className={styles.taglineText}
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.3}
+          custom={0.5}
         >
           <em>Digital solutions studio</em> built for brands that want to
           stand&nbsp;out, scale&nbsp;up, and ship&nbsp;fast.
@@ -45,14 +59,13 @@ export default function HeroSection() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.55}
+          custom={0.8}
         >
           <a href="#contact" className={styles.ctaButton}>
             <span className={styles.cornerTL} />
             <span className={styles.cornerTR} />
             <span className={styles.cornerBL} />
             <span className={styles.cornerBR} />
-            {/* Two text copies stacked — top slides out, bottom slides in */}
             <span className={styles.ctaText}>
               <span className={styles.ctaTextInner}>
                 <span className={styles.ctaTextTop}>Contact Us</span>
@@ -62,20 +75,6 @@ export default function HeroSection() {
           </a>
         </motion.div>
       </div>
-
-      {/* Large wordmark */}
-      <motion.div
-        className={styles.wordmarkWrapper}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.7 }}
-      >
-        <img
-          src="/icons/nova-wordmark.svg"
-          alt="iNOVA"
-          className={styles.wordmark}
-        />
-      </motion.div>
     </section>
   );
 }
