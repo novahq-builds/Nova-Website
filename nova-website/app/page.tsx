@@ -10,12 +10,24 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <WhyUsSection />
-      <OurWorkSection />
-      <FooterSection />
+      <section id="home">
+        <HeroSection />
+      </section>
+      <section id="about">
+        <AboutSection />
+      </section>
+      <section id="services">
+        <ServicesSection />
+      </section>
+      <section id="why-us">
+        <WhyUsSection />
+      </section>
+      <section id="work">
+        <OurWorkSection />
+      </section>
+      <section id="contact">
+        <FooterSection />
+      </section>
     </main>
   );
 }
