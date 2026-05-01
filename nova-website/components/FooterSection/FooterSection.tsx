@@ -53,16 +53,7 @@ export default function FooterSection() {
                 />
               </svg>
             </a>
-            <a href="#" aria-label="X" className={styles.socialLink}>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25h6.838l4.26 5.632 4.896-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
+
             <a
               href="https://www.linkedin.com/company/novahq-builds"
               target="_blank"
