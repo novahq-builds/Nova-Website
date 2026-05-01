@@ -11,43 +11,6 @@
   inset: 0;
 }
 
-/* ── Navbar ── */
-.nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem 2rem;
-}
-
-.logo {
-  width: 2.75rem;
-  height: 2.75rem;
-}
-
-.navLinks {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  list-style: none;
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-}
-
-.navLink {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.navLink:hover {
-  color: #d5fe00;
-}
-
 /* ── Right-side tagline ── */
 .tagline {
   position: absolute;
@@ -74,17 +37,19 @@
 
 .ctaButton {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem 2.5rem;
   color: #fff;
   font-size: 0.875rem;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
+  overflow: hidden;
 }
 
-/* Corner bracket decorators */
+/* ── Corner brackets — animate to full border on hover ── */
 .cornerTL,
 .cornerTR,
 .cornerBL,
@@ -94,6 +59,7 @@
   height: 1rem;
   border-color: #fff;
   border-style: solid;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cornerTL {
@@ -115,6 +81,46 @@
   bottom: 0;
   right: 0;
   border-width: 0 1px 1px 0;
+}
+
+.ctaButton:hover .cornerTL {
+  transform: translate(6px, 6px);
+}
+.ctaButton:hover .cornerTR {
+  transform: translate(-6px, 6px);
+}
+.ctaButton:hover .cornerBL {
+  transform: translate(6px, -6px);
+}
+.ctaButton:hover .cornerBR {
+  transform: translate(-6px, -6px);
+}
+
+/* ── Text roll-up on hover ── */
+.ctaText {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 1.2em;
+  line-height: 1.2em;
+}
+
+.ctaTextInner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ctaButton:hover .ctaTextInner {
+  transform: translateY(-1.2em);
+}
+
+.ctaTextTop,
+.ctaTextBottom {
+  display: block;
+  height: 1.2em;
+  line-height: 1.2em;
+  white-space: nowrap;
 }
 
 /* ── Wordmark ── */

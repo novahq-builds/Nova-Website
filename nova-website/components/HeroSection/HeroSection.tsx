@@ -16,7 +16,7 @@ const fadeUp = {
 export default function HeroSection() {
   return (
     <section className={styles.section}>
-      {/* Background — continuously fading */}
+      {/* Background */}
       <div className={styles.bgWrapper}>
         <Image
           src="/images/hero-bg.png"
@@ -52,7 +52,13 @@ export default function HeroSection() {
             <span className={styles.cornerTR} />
             <span className={styles.cornerBL} />
             <span className={styles.cornerBR} />
-            Contact Us
+            {/* Two text copies stacked — top slides out, bottom slides in */}
+            <span className={styles.ctaText}>
+              <span className={styles.ctaTextInner}>
+                <span className={styles.ctaTextTop}>Contact Us</span>
+                <span className={styles.ctaTextBottom}>Contact Us</span>
+              </span>
+            </span>
           </a>
         </motion.div>
       </div>
