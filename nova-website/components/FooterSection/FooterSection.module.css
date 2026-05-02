@@ -71,6 +71,13 @@
   gap: 24px;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
 .formGroup {
   width: 100%;
 }

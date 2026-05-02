@@ -1,6 +1,38 @@
+"use client";
+
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import styles from "./FooterSection.module.css";
 
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+
 export default function FooterSection() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+    setStatus("sending");
+    try {
+      await emailjs.sendForm(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        formRef.current,
+        PUBLIC_KEY
+      );
+      setStatus("sent");
+      formRef.current.reset();
+      setTimeout(() => setStatus("idle"), 3000);
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.bgImage} />
@@ -15,7 +47,13 @@ export default function FooterSection() {
           </h2>
 
           <div className={styles.socials}>
-            <a href="#" aria-label="Instagram" className={styles.socialLink}>
+            <a
+              href="https://www.instagram.com/novahq.builds?igsh=MTg3bXV3YzdqdWM3aA%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className={styles.socialLink}
+            >
               <svg
                 width="22"
                 height="22"
@@ -73,39 +111,76 @@ export default function FooterSection() {
 
         {/* Right - Form */}
         <div className={styles.right}>
-          <div className={styles.formGroup}>
-            <input type="text" placeholder="Name" className={styles.input} />
-          </div>
-          <div className={styles.formGroup}>
-            <input
-              type="email"
-              placeholder="Email Address"
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <input type="text" placeholder="Message" className={styles.input} />
-          </div>
+          <form ref={formRef} onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formGroup}>
+              <input
+                name="from_name"
+                type="text"
+                placeholder="Name"
+                className={styles.input}
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                name="from_email"
+                type="email"
+                placeholder="Email Address"
+                className={styles.input}
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                name="message"
+                type="text"
+                placeholder="Message"
+                className={styles.input}
+                required
+              />
+            </div>
 
-          <button className={styles.contactBtn}>
-            <span className={styles.corner} data-pos="tl" />
-            <span className={styles.corner} data-pos="tr" />
-            <span className={styles.corner} data-pos="bl" />
-            <span className={styles.corner} data-pos="br" />
-            <span className={styles.btnText}>
-              <span className={styles.btnTextInner}>
-                <span className={styles.btnTextTop}>Send Email</span>
-                <span className={styles.btnTextBottom}>Send Email</span>
+            <button
+              type="submit"
+              className={styles.contactBtn}
+              disabled={status === "sending"}
+            >
+              <span className={styles.corner} data-pos="tl" />
+              <span className={styles.corner} data-pos="tr" />
+              <span className={styles.corner} data-pos="bl" />
+              <span className={styles.corner} data-pos="br" />
+              <span className={styles.btnText}>
+                <span className={styles.btnTextInner}>
+                  <span className={styles.btnTextTop}>
+                    {status === "sending"
+                      ? "Sending..."
+                      : status === "sent"
+                      ? "Sent ✓"
+                      : status === "error"
+                      ? "Try Again"
+                      : "Submit"}
+                  </span>
+                  <span className={styles.btnTextBottom}>
+                    {status === "sending"
+                      ? "Sending..."
+                      : status === "sent"
+                      ? "Sent ✓"
+                      : status === "error"
+                      ? "Try Again"
+                      : "Submit"}
+                  </span>
+                </span>
               </span>
-            </span>
-          </button>
+            </button>
+          </form>
         </div>
       </div>
 
