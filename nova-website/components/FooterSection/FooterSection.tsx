@@ -106,7 +106,7 @@ export default function FooterSection() {
           <button className={styles.contactBtn}>
             <span className={styles.corner} data-pos="tl" />
             <span className={styles.corner} data-pos="tr" />
-            Contact Us
+            Send Email
             <span className={styles.corner} data-pos="bl" />
             <span className={styles.corner} data-pos="br" />
           </button>
