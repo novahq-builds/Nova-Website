@@ -24,8 +24,8 @@
 .compressed {
   top: 10px;
   left: 53%;
-  width: clamp(420px, 55vw, 780px);
-  padding: 0.55rem 1vw 0.55rem 1.75rem;
+  width: clamp(420px, 41vw, 760px);
+  padding: 0.5rem 2vw 0.55rem 1.75rem;
   background-color: #0d0d0d;
   border-radius: 10px;
   transform: translateX(-50%);
