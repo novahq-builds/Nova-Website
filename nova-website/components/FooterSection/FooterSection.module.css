@@ -6,7 +6,6 @@
   font-family: var(--font-saira), sans-serif;
 }
 
-/* Background image */
 .bgImage {
   position: absolute;
   inset: 0;
@@ -17,7 +16,6 @@
   z-index: 0;
 }
 
-/* Floating dark card */
 .card {
   position: relative;
   z-index: 1;
@@ -31,7 +29,6 @@
   margin: 0 auto;
 }
 
-/* Left */
 .left {
   display: flex;
   flex-direction: column;
@@ -68,7 +65,6 @@
   line-height: 1.6;
 }
 
-/* Right - Form */
 .right {
   display: flex;
   flex-direction: column;
@@ -100,7 +96,7 @@
   border-bottom-color: #ffffff;
 }
 
-/* Contact Button */
+/* ── Contact Button with corner animation + text roll-up ── */
 .contactBtn {
   position: relative;
   display: inline-flex;
@@ -115,14 +111,17 @@
   cursor: pointer;
   letter-spacing: 0.05em;
   align-self: flex-start;
+  overflow: hidden;
 }
 
+/* Corner brackets */
 .corner {
   position: absolute;
   width: 10px;
   height: 10px;
   border-color: #ffffff;
   border-style: solid;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .corner[data-pos="tl"] {
@@ -144,6 +143,46 @@
   bottom: 0;
   right: 0;
   border-width: 0 1px 1px 0;
+}
+
+.contactBtn:hover .corner[data-pos="tl"] {
+  transform: translate(6px, 6px);
+}
+.contactBtn:hover .corner[data-pos="tr"] {
+  transform: translate(-6px, 6px);
+}
+.contactBtn:hover .corner[data-pos="bl"] {
+  transform: translate(6px, -6px);
+}
+.contactBtn:hover .corner[data-pos="br"] {
+  transform: translate(-6px, -6px);
+}
+
+/* Text roll-up */
+.btnText {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 1.2em;
+  line-height: 1.2em;
+}
+
+.btnTextInner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contactBtn:hover .btnTextInner {
+  transform: translateY(-1.2em);
+}
+
+.btnTextTop,
+.btnTextBottom {
+  display: block;
+  height: 1.2em;
+  line-height: 1.2em;
+  white-space: nowrap;
 }
 
 /* Giant NOVA wordmark at bottom */
