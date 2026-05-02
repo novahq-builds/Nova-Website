@@ -9,7 +9,7 @@
 .bgImage {
   position: absolute;
   inset: 0;
-  background-image: url("/public/images/footer-bg.png");
+  background-image: url("/images/footer-bg.png");
   background-size: cover;
   background-position: center;
   opacity: 0.3;
@@ -103,6 +103,16 @@
   border-bottom-color: #ffffff;
 }
 
+.inputError {
+  border-bottom-color: #ff4444 !important;
+}
+
+.errorMsg {
+  color: #ff4444;
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
 /* ── Contact Button with corner animation + text roll-up ── */
 .contactBtn {
   position: relative;
@@ -121,7 +131,6 @@
   overflow: hidden;
 }
 
-/* Corner brackets */
 .corner {
   position: absolute;
   width: 10px;
@@ -165,7 +174,6 @@
   transform: translate(-6px, -6px);
 }
 
-/* Text roll-up */
 .btnText {
   display: flex;
   flex-direction: column;
@@ -192,7 +200,6 @@
   white-space: nowrap;
 }
 
-/* Giant NOVA wordmark at bottom */
 .wordmark {
   position: relative;
   z-index: 1;

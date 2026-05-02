@@ -15,7 +15,7 @@ export default function Navbar() {
       const heroHeight = window.innerHeight;
       const scrollingDown = currentY > lastScrollY.current;
 
-      const whyUsEl = document.getElementById("why-us");
+      const whyUsEl = document.getElementById("about");
       const aboutScrollLimit = whyUsEl
         ? whyUsEl.offsetTop + whyUsEl.offsetHeight * 0.15
         : heroHeight;
@@ -53,8 +53,8 @@ export default function Navbar() {
       />
       <ul className={styles.navLinks}>
         <li>
-          <a href="#why-us" className={styles.navLink}>
-            Why Us
+          <a href="#about" className={styles.navLink}>
+            About Us
           </a>
         </li>
 
@@ -65,12 +65,12 @@ export default function Navbar() {
         </li>
         <li>
           <a href="#about" className={styles.navLink}>
-            About Us
+            Why Us
           </a>
         </li>
         <li>
           <a href="#work" className={styles.navLink}>
-            Work
+            Works
           </a>
         </li>
 
