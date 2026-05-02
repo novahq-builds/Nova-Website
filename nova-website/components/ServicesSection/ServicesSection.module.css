@@ -1,4 +1,4 @@
-/* Tall wrapper for scroll room */
+/* ── Desktop ── */
 .wrapper {
   height: 250vh;
   position: relative;
@@ -15,13 +15,12 @@
   font-family: var(--font-saira), sans-serif;
 }
 
-/* Header */
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 56px 56px 56px;
+  padding: 56px 56px 64px;
   gap: 16px;
   flex-shrink: 0;
 }
@@ -55,7 +54,6 @@
   max-width: 800px;
 }
 
-/* Track */
 .trackWrapper {
   flex: 1;
   overflow: hidden;
@@ -67,11 +65,9 @@
   display: flex;
   gap: 20px;
   height: 100%;
-  transition: transform 0.05s linear;
   will-change: transform;
 }
 
-/* Card */
 .card {
   flex: 0 0 420px;
   height: 100%;
@@ -80,38 +76,6 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  position: relative;
-}
-
-.numberBadge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-.badgeSquare {
-  width: 28px;
-  height: 28px;
-  background-color: #d5fe00;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.badgeNumber {
-  background-color: #d5fe00;
-  color: #000000;
-  font-size: 0.85rem;
-  font-weight: 600;
-  width: 28px;
-  height: 28px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .imageWrap {
@@ -145,65 +109,67 @@
   line-height: 1.6;
 }
 
-/* ── Responsive ── */
+/* ── Mobile ── */
 @media (max-width: 768px) {
+  /* Reset wrapper height — no scroll room needed */
   .wrapper {
     height: auto !important;
+    position: relative;
   }
 
+  /* Reset sticky to normal flow */
   .sticky {
-    position: relative;
-    height: auto;
-    overflow: visible;
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .header {
-    padding: 48px 24px 32px;
+    padding: 48px 20px 28px;
   }
 
   .tagline {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    max-width: 100%;
   }
 
+  /* Vertical stack */
   .trackWrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 0 20px 24px;
-    flex: none;
+    flex: none !important;
+    overflow: visible !important;
+    padding: 0 20px 28px !important;
+    height: auto !important;
   }
 
-  .trackWrapper::-webkit-scrollbar {
-    display: none;
-  }
-
+  /* Reset transform from JS */
   .track {
     transform: none !important;
-    width: max-content;
-    height: auto;
+    height: auto !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
   }
 
+  /* Cards full width */
   .card {
-    flex: 0 0 80vw;
-    height: auto;
+    flex: none !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
   }
 
   .imageWrap {
-    height: 180px;
+    height: 180px !important;
   }
 
   .cardTitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 400px) {
-  .card {
-    flex: 0 0 88vw;
-  }
-
+@media (max-width: 480px) {
   .imageWrap {
-    height: 150px;
+    height: 150px !important;
   }
 }

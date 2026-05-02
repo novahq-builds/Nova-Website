@@ -102,6 +102,41 @@
   border-width: 0 1px 1px 0;
 }
 
+/* GIF row */
+.gifRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.gifItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.gif {
+  width: 110px;
+  height: 110px;
+  border-radius: 16px;
+}
+
+.gifLabel {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #999999;
+}
+
+.gifArrow {
+  font-size: 1.4rem;
+  color: #d5fe00;
+  margin-bottom: 28px;
+}
+
 /* Ticker */
 .ticker {
   background-color: #000000;
@@ -161,6 +196,16 @@
     line-height: 1.75;
   }
 
+  .gif {
+    width: 60px;
+    height: 60px;
+  }
+
+  .gifArrow {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+
   .tickerItem {
     font-size: 1.5rem;
   }
@@ -182,6 +227,11 @@
 
   .bodyText {
     font-size: 0.875rem;
+  }
+  .gif {
+    width: 80px;
+    height: 130px;
+    border-radius: 10px;
   }
 
   .tickerItem {

@@ -40,7 +40,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2.5rem;
+  padding: 0.6rem 1.5rem;
   color: #fff;
   font-size: 0.875rem;
   letter-spacing: 0.2em;
@@ -49,7 +49,6 @@
   overflow: hidden;
 }
 
-/* ── Corner brackets ── */
 .cornerTL,
 .cornerTR,
 .cornerBL,
@@ -96,7 +95,6 @@
   transform: translate(-6px, -6px);
 }
 
-/* ── Text roll-up on hover ── */
 .ctaText {
   display: flex;
   flex-direction: column;
@@ -138,20 +136,41 @@
   display: block;
 }
 
-/* ── Responsive ── */
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  .tagline {
+  /* Stack NOVA + tagline + button vertically centered */
+  .wordmarkWrapper {
+    position: relative;
+    bottom: auto;
     top: auto;
-    bottom: 14%;
-    right: 1.5rem;
-    left: 1.5rem;
+    left: auto;
+    right: auto;
+    transform: none;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wordmark {
+    width: 88vw;
+  }
+
+  .tagline {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    right: auto;
+    left: auto;
+    transform: none;
     max-width: 100%;
     text-align: center;
-    transform: none;
+    z-index: 20;
+    margin-top: 24px;
   }
 
   .taglineText {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.6;
   }
 
@@ -160,18 +179,28 @@
     margin-top: 1.5rem;
   }
 
-  .wordmarkWrapper {
-    left: 0;
-    transform: translateY(25%);
+  /* Use flex on section to center content vertically */
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 1.5rem 2rem;
   }
 
-  .wordmark {
-    width: 100vw;
+  /* bgWrapper must stay absolute */
+  .bgWrapper {
+    position: absolute;
+    inset: 0;
   }
 }
 
 @media (max-width: 400px) {
   .taglineText {
     font-size: 0.95rem;
+  }
+
+  .wordmark {
+    width: 94vw;
   }
 }
