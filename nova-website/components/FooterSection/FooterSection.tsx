@@ -13,10 +13,21 @@ export default function FooterSection() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+  const [phoneError, setPhoneError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
+
+    const phone = (
+      formRef.current.elements.namedItem("phone") as HTMLInputElement
+    )?.value;
+    if (phone && !/^[\d\s\+\-\(\)]{7,15}$/.test(phone)) {
+      setPhoneError("Please enter a valid phone number.");
+      return;
+    }
+    setPhoneError("");
+
     setStatus("sending");
     try {
       await emailjs.sendForm(
@@ -141,8 +152,12 @@ export default function FooterSection() {
                 name="phone"
                 type="tel"
                 placeholder="Phone Number"
-                className={styles.input}
+                className={`${styles.input} ${
+                  phoneError ? styles.inputError : ""
+                }`}
+                onChange={() => setPhoneError("")}
               />
+              {phoneError && <p className={styles.errorMsg}>{phoneError}</p>}
             </div>
             <div className={styles.formGroup}>
               <input
