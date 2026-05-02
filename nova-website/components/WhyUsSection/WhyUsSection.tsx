@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import styles from "./WhyUsSection.module.css";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 40 },
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as any, delay },
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const, delay },
   }),
 };
 
@@ -95,7 +95,7 @@ export default function WhyUsSection() {
                 {item}
                 <span className={styles.tickerDot}></span>
               </span>
-            )),
+            ))
           )}
         </div>
       </motion.div>
