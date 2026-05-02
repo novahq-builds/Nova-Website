@@ -49,18 +49,19 @@ export default function Navbar() {
       />
       <ul className={styles.navLinks}>
         <li>
-          <a href="#about" className={styles.navLink}>
-            About Us
+          <a href="#why-us" className={styles.navLink}>
+            Why Us
           </a>
         </li>
+
         <li>
           <a href="#services" className={styles.navLink}>
             Services
           </a>
         </li>
         <li>
-          <a href="#why-us" className={styles.navLink}>
-            Why Us
+          <a href="#about" className={styles.navLink}>
+            About Us
           </a>
         </li>
         <li>
