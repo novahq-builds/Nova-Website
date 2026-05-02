@@ -18,9 +18,9 @@ export default function OurWorkSection() {
           <span className={styles.label}>Our Work</span>
         </div>
         <h2 className={styles.heading}>
-          We could list a hundred reasons why Nova is the right
+          Great work speaks for itself. Here's a glimpse
           <br />
-          choice. But honestly? Our work does the talking.
+          into what we've been building.
         </h2>
       </div>
 

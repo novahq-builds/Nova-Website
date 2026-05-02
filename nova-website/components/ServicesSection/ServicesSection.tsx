@@ -8,13 +8,13 @@ const services = [
   {
     title: "Web & Mobile Design and Development",
     description:
-      "From pixel-perfect interfaces to smooth mobile experiences, we build digital products that feel as good as they look. Every line of code, every design decision — made to perform.",
+      "From pixel perfect interfaces to smooth mobile experiences, we build digital products that feel as good as they look. Every line of code, every design decision made to perform.",
     image: "/images/service-1.png",
   },
   {
     title: "Product Design & Branding",
     description:
-      "Great design without strategy is just decoration. We combine sharp visual thinking with brand strategy to create identities that communicate who you are — and why you're the only choice.",
+      "Great design without strategy is just decoration. We combine sharp visual thinking with brand strategy to create identities that communicate who you are and why you're the only choice.",
     image: "/images/service-2.png",
   },
   {
@@ -26,7 +26,7 @@ const services = [
   {
     title: "SEO & Digital Marketing",
     description:
-      "A beautiful website means nothing if nobody finds it. We drive real, measurable growth through SEO strategies, content that ranks, and digital marketing that puts your brand in front of the right people — at the right time.",
+      "A beautiful website means nothing if nobody finds it. We drive real, measurable growth through SEO strategies, content that ranks, and digital marketing that puts your brand in front of the right people at the right time.",
     image: "/images/service-4.png",
   },
 ];
@@ -73,8 +73,8 @@ export default function ServicesSection() {
             <span className={styles.label}>Our Services</span>
           </div>
           <p className={styles.tagline}>
-            We don't just build websites. We build brands that compete, products
-            that scale, and experiences that people remember.
+            Every service we offer is built around one goal to make your
+            business look better, work smarter, and grow faster.
           </p>
         </div>
 
