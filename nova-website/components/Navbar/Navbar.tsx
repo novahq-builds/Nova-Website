@@ -15,9 +15,14 @@ export default function Navbar() {
       const heroHeight = window.innerHeight;
       const scrollingDown = currentY > lastScrollY.current;
 
+      const whyUsEl = document.getElementById("why-us");
+      const aboutScrollLimit = whyUsEl
+        ? whyUsEl.offsetTop + whyUsEl.offsetHeight * 0.15
+        : heroHeight;
+
       if (currentY < 10) {
         setNavState("top");
-      } else if (currentY > heroHeight && scrollingDown) {
+      } else if (currentY > aboutScrollLimit && scrollingDown) {
         setNavState("hidden");
       } else {
         setNavState("compressed");
@@ -25,7 +30,6 @@ export default function Navbar() {
 
       lastScrollY.current = currentY;
     };
-
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);

@@ -1,14 +1,14 @@
 /* ── Base: full-width transparent (top of page) ── */
 .nav {
   position: fixed;
-  top: 1vw;
-  left: 1vw;
+  top: 0;
+  left: 0;
   width: 100%;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 4rem 1.5rem 2rem;
+  padding: 1.5rem 2rem;
   background-color: transparent;
   border-radius: 0;
   box-sizing: border-box;
@@ -23,9 +23,9 @@
 /* ── Compressed: floating centered pill ── */
 .compressed {
   top: 10px;
-  left: 50%;
-  width: clamp(220px, 55vw, 580px);
-  padding: 0.55rem 1.75rem;
+  left: 53%;
+  width: clamp(420px, 55vw, 780px);
+  padding: 0.55rem 1vw 0.55rem 1.75rem;
   background-color: #0d0d0d;
   border-radius: 10px;
   transform: translateX(-50%);
@@ -49,6 +49,7 @@
 .logoCompressed {
   width: 2.2rem;
   height: 2.2rem;
+  margin-left: 0.5rem;
 }
 
 /* ── Links ── */
