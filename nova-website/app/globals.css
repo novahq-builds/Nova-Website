@@ -22,3 +22,20 @@ body {
   color: var(--foreground);
   font-family: var(--font-saira), Arial, sans-serif;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  section {
+    scroll-margin-top: 56px;
+  }
+}

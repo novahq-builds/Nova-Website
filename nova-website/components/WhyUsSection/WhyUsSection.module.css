@@ -49,6 +49,7 @@
   line-height: 1.4;
   max-width: 800px;
 }
+
 .bodyText {
   font-size: 1.12rem;
   color: #888888;
@@ -56,6 +57,7 @@
   max-width: 900px;
   text-align: center;
 }
+
 /* Contact Button */
 .contactBtn {
   position: relative;
@@ -140,5 +142,49 @@
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .content {
+    padding: 60px 24px 48px;
+    gap: 24px;
+  }
+
+  .headingSecondary {
+    font-size: 1.2rem;
+  }
+
+  .bodyText {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .tickerItem {
+    font-size: 1.5rem;
+  }
+
+  .tickerDot {
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .content {
+    padding: 48px 16px 36px;
+    gap: 20px;
+  }
+
+  .headingSecondary {
+    font-size: 1rem;
+  }
+
+  .bodyText {
+    font-size: 0.875rem;
+  }
+
+  .tickerItem {
+    font-size: 1.2rem;
   }
 }

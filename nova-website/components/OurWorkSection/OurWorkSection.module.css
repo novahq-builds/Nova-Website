@@ -66,3 +66,32 @@
 .item:hover .image {
   transform: scale(1.03);
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .header {
+    padding: 60px 24px 40px;
+  }
+
+  .heading {
+    font-size: 1.2rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .item {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 400px) {
+  .header {
+    padding: 48px 16px 32px;
+  }
+
+  .heading {
+    font-size: 1rem;
+  }
+}

@@ -98,7 +98,6 @@
 .input::placeholder {
   color: #666666;
 }
-
 .input:focus {
   border-bottom-color: #ffffff;
 }
@@ -215,4 +214,52 @@
   filter: brightness(10);
   position: absolute;
   bottom: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 40px 40px 0;
+  }
+  .card {
+    padding: 48px;
+    gap: 40px;
+  }
+  .heading {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 32px 16px 0;
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 36px;
+  }
+
+  .left {
+    gap: 28px;
+  }
+
+  .heading {
+    font-size: 1.4rem;
+  }
+
+  .wordmark {
+    height: 80px;
+  }
+}
+
+@media (max-width: 400px) {
+  .heading {
+    font-size: 1.2rem;
+  }
+  .card {
+    padding: 24px 16px;
+    gap: 28px;
+  }
 }

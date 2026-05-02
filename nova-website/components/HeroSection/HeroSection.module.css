@@ -49,7 +49,7 @@
   overflow: hidden;
 }
 
-/* ── Corner brackets — animate to full border on hover ── */
+/* ── Corner brackets ── */
 .cornerTL,
 .cornerTR,
 .cornerBL,
@@ -136,4 +136,42 @@
   width: 72vw;
   height: auto;
   display: block;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .tagline {
+    top: auto;
+    bottom: 14%;
+    right: 1.5rem;
+    left: 1.5rem;
+    max-width: 100%;
+    text-align: center;
+    transform: none;
+  }
+
+  .taglineText {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .ctaWrapper {
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .wordmarkWrapper {
+    left: 0;
+    transform: translateY(25%);
+  }
+
+  .wordmark {
+    width: 100vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .taglineText {
+    font-size: 0.95rem;
+  }
 }

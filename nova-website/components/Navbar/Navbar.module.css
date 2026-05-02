@@ -9,6 +9,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
   background-color: transparent;
   border-radius: 0;
   box-sizing: border-box;
@@ -72,4 +74,42 @@
 
 .navLink:hover {
   color: #d5fe00;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem 1.25rem;
+  }
+
+  .compressed {
+    top: 8px;
+    left: 50%;
+    width: 92vw;
+    padding: 0.45rem 1rem;
+    transform: translateX(-50%);
+  }
+
+  .navLinks {
+    gap: 1rem;
+    font-size: 0.72rem;
+  }
+
+  .logo {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .logoCompressed {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-left: 0.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .navLinks {
+    gap: 0.6rem;
+    font-size: 0.65rem;
+  }
 }
