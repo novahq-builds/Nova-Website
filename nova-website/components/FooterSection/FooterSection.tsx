@@ -1,32 +1,52 @@
+"use client";
+
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import styles from "./FooterSection.module.css";
 
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+
 export default function FooterSection() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+    setStatus("sending");
+    try {
+      await emailjs.sendForm(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        formRef.current,
+        PUBLIC_KEY
+      );
+      setStatus("sent");
+      formRef.current.reset();
+      setTimeout(() => setStatus("idle"), 3000);
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <footer className={styles.footer}>
-      {/* Background image */}
       <div className={styles.bgImage} />
 
-      {/* Floating Card */}
       <div className={styles.card}>
         {/* Left */}
         <div className={styles.left}>
           <h2 className={styles.heading}>
-            Let's Build Something
+            Let&apos;s Build Something
             <br />
             Amazing Together
           </h2>
 
           <div className={styles.socials}>
-            <a href="#" aria-label="Facebook" className={styles.socialLink}>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-              </svg>
-            </a>
             <a
               href="https://www.instagram.com/novahq.builds?igsh=MTg3bXV3YzdqdWM3aA%3D%3D&utm_source=qr"
               target="_blank"
@@ -53,7 +73,16 @@ export default function FooterSection() {
                 />
               </svg>
             </a>
-
+            <a href="#" aria-label="X" className={styles.socialLink}>
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25h6.838l4.26 5.632 4.896-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
             <a
               href="https://www.linkedin.com/company/novahq-builds"
               target="_blank"
@@ -82,34 +111,76 @@ export default function FooterSection() {
 
         {/* Right - Form */}
         <div className={styles.right}>
-          <div className={styles.formGroup}>
-            <input type="text" placeholder="Name" className={styles.input} />
-          </div>
-          <div className={styles.formGroup}>
-            <input
-              type="email"
-              placeholder="Email Address"
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              className={styles.input}
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <input type="text" placeholder="Message" className={styles.input} />
-          </div>
+          <form ref={formRef} onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formGroup}>
+              <input
+                name="from_name"
+                type="text"
+                placeholder="Name"
+                className={styles.input}
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                name="from_email"
+                type="email"
+                placeholder="Email Address"
+                className={styles.input}
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                name="message"
+                type="text"
+                placeholder="Message"
+                className={styles.input}
+                required
+              />
+            </div>
 
-          <button className={styles.contactBtn}>
-            <span className={styles.corner} data-pos="tl" />
-            <span className={styles.corner} data-pos="tr" />
-            Contact Us
-            <span className={styles.corner} data-pos="bl" />
-            <span className={styles.corner} data-pos="br" />
-          </button>
+            <button
+              type="submit"
+              className={styles.contactBtn}
+              disabled={status === "sending"}
+            >
+              <span className={styles.corner} data-pos="tl" />
+              <span className={styles.corner} data-pos="tr" />
+              <span className={styles.corner} data-pos="bl" />
+              <span className={styles.corner} data-pos="br" />
+              <span className={styles.btnText}>
+                <span className={styles.btnTextInner}>
+                  <span className={styles.btnTextTop}>
+                    {status === "sending"
+                      ? "Sending..."
+                      : status === "sent"
+                      ? "Sent ✓"
+                      : status === "error"
+                      ? "Try Again"
+                      : "Submit"}
+                  </span>
+                  <span className={styles.btnTextBottom}>
+                    {status === "sending"
+                      ? "Sending..."
+                      : status === "sent"
+                      ? "Sent ✓"
+                      : status === "error"
+                      ? "Try Again"
+                      : "Submit"}
+                  </span>
+                </span>
+              </span>
+            </button>
+          </form>
         </div>
       </div>
 
