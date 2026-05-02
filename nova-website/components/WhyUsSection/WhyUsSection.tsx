@@ -8,7 +8,7 @@ const fadeUp = {
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay },
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as any, delay },
   }),
 };
 
@@ -56,9 +56,27 @@ export default function WhyUsSection() {
           viewport={{ once: true, amount: 0.3 }}
           custom={0.35}
         >
-          We started Nova because we were tired of seeing great businesses stuck
-          with bad websites, forgettable brands, and software that just barely
-          works.
+          Choosing the right digital partner changes everything and we built
+          Nova to be exactly that partner for your business.
+        </motion.p>
+
+        {/* Description */}
+        <motion.p
+          className={styles.bodyText}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          custom={0.45}
+        >
+          At Nova, we believe great work starts with truly understanding your
+          business. Before we open a design file or write a line of code, we
+          take the time to learn your goals, your users, and what success looks
+          like for you. Every project we take on is treated with the same care,
+          urgency, and attention to detail because we know that the work we put
+          out is a direct reflection of who we are. The result is work that
+          doesn't just look good it performs, converts, and lasts. That's the
+          Nova difference.
         </motion.p>
       </div>
 
@@ -77,7 +95,7 @@ export default function WhyUsSection() {
                 {item}
                 <span className={styles.tickerDot}></span>
               </span>
-            ))
+            )),
           )}
         </div>
       </motion.div>

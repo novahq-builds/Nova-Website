@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 60px 40px;
+  padding: 120px 60px 120px;
   gap: 32px;
 }
 
@@ -42,22 +42,20 @@
   letter-spacing: 0.05em;
 }
 
-.headingPrimary {
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: #000000;
-  line-height: 1.4;
-  max-width: 760px;
-}
-
 .headingSecondary {
   font-size: 1.6rem;
   font-weight: 400;
   color: #000000;
   line-height: 1.4;
-  max-width: 760px;
+  max-width: 800px;
 }
-
+.bodyText {
+  font-size: 1.12rem;
+  color: #888888;
+  line-height: 1.9;
+  max-width: 900px;
+  text-align: center;
+}
 /* Contact Button */
 .contactBtn {
   position: relative;
