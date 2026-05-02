@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./ServicesSection.module.css";
 import Image from "next/image";
 
@@ -34,33 +34,39 @@ const services = [
 export default function ServicesSection() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const [translateX, setTranslateX] = useState(0);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!wrapperRef.current || !trackRef.current) return;
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        if (!wrapperRef.current || !trackRef.current) return;
 
-      const { top, height } = wrapperRef.current.getBoundingClientRect();
-      const scrolled = -top;
-      const total = height - window.innerHeight;
+        const { top, height } = wrapperRef.current.getBoundingClientRect();
+        const scrolled = -top;
+        const total = height - window.innerHeight;
 
-      if (scrolled <= 0 || total <= 0) {
-        setTranslateX(0);
-        return;
-      }
+        if (scrolled <= 0 || total <= 0) {
+          trackRef.current.style.transform = "translateX(0px)";
+          return;
+        }
 
-      const progress = Math.min(scrolled / total, 1);
+        const progress = Math.min(scrolled / total, 1);
+        const trackWidth = trackRef.current.scrollWidth;
+        const visibleWidth = window.innerWidth - 80;
+        const maxTranslate = Math.max(0, trackWidth - visibleWidth);
 
-      // trackRef is on the inner track div; visible area = viewport minus both side paddings (40px each)
-      const trackWidth = trackRef.current.scrollWidth;
-      const visibleWidth = window.innerWidth - 80;
-      const maxTranslate = Math.max(0, trackWidth - visibleWidth);
-
-      setTranslateX(progress * maxTranslate);
+        // Direct DOM write — no React re-render
+        trackRef.current.style.transform =
+          "translateX(-" + progress * maxTranslate + "px)";
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   return (
@@ -73,21 +79,16 @@ export default function ServicesSection() {
             <span className={styles.label}>Our Services</span>
           </div>
           <p className={styles.tagline}>
-            We don't just build websites. We build brands that compete, products
-            that scale, and experiences that people remember.
+            We don&apos;t just build websites. We build brands that compete,
+            products that scale, and experiences that people remember.
           </p>
         </div>
 
         {/* Scrolling Cards Track */}
         <div className={styles.trackWrapper}>
-          <div
-            ref={trackRef}
-            className={styles.track}
-            style={{ transform: `translateX(-${translateX}px)` }}
-          >
+          <div ref={trackRef} className={styles.track}>
             {services.map((service, i) => (
               <div key={i} className={styles.card}>
-                {/* Image */}
                 <div className={styles.imageWrap}>
                   <Image
                     src={service.image}
@@ -97,8 +98,6 @@ export default function ServicesSection() {
                     sizes="25vw"
                   />
                 </div>
-
-                {/* Text */}
                 <div className={styles.cardBody}>
                   <h3 className={styles.cardTitle}>{service.title}</h3>
                   <p className={styles.cardDesc}>{service.description}</p>
