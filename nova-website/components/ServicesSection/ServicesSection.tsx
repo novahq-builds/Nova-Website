@@ -1,158 +1,111 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ServicesSection.module.css";
+import Image from "next/image";
 
 const services = [
   {
-    number: "01",
     title: "Web & Mobile Design and Development",
     description:
-      "We design and develop web and mobile experiences that look stunning and work flawlessly — from pixel-perfect interfaces to rock-solid architecture.",
+      "From pixel-perfect interfaces to smooth mobile experiences, we build digital products that feel as good as they look. Every line of code, every design decision — made to perform.",
+    image: "/images/service-1.png",
   },
   {
-    number: "02",
-    title: "Brand Identity & Strategy",
+    title: "Product Design & Branding",
     description:
-      "We craft identities that communicate who you are and why it matters — across every touchpoint, from logo to language to launch.",
+      "Great design without strategy is just decoration. We combine sharp visual thinking with brand strategy to create identities that communicate who you are — and why you're the only choice.",
+    image: "/images/service-2.png",
   },
   {
-    number: "03",
-    title: "Product Design & UX",
+    title: "Website Revamp & Modernization",
     description:
-      "From wireframes to final UI, we design products that are intuitive, beautiful, and built to convert. Great UX is invisible — bad UX isn't.",
+      "Your website was built for a different time. If it's slow, outdated, or no longer reflects who you are, it's costing you business. We take what you have and rebuild it into something that performs, converts, and actually represents your brand today.",
+    image: "/images/service-3.png",
   },
   {
-    number: "04",
     title: "SEO & Digital Marketing",
     description:
-      "We grow your visibility and drive real results through data-driven strategies — organic search, paid campaigns, and everything in between.",
+      "A beautiful website means nothing if nobody finds it. We drive real, measurable growth through SEO strategies, content that ranks, and digital marketing that puts your brand in front of the right people — at the right time.",
+    image: "/images/service-4.png",
   },
 ];
 
-const SCROLL_PER_PANEL_VH = 1.5;
-const SNAP_DURATION_MS = 520;
-const SNAP_IDLE_MS = 150;
-
 export default function ServicesSection() {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const fillRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const rafRef = useRef<number | null>(null);
-  const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const displayProgressRef = useRef(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [translateX, setTranslateX] = useState(0);
 
   useEffect(() => {
-    const applyProgress = (p: number) => {
-      cardRefs.current.forEach((el, i) => {
-        if (el) el.style.transform = "translateX(" + (i - p) * 100 + "%)";
-      });
-      fillRefs.current.forEach((el, i) => {
-        if (el) {
-          // segment i is full when p >= i+1, empty when p <= i
-          const fill = Math.min(Math.max(p - i + 1, 0), 1);
-          el.style.transform = "scaleX(" + fill + ")";
-        }
-      });
+    const handleScroll = () => {
+      if (!wrapperRef.current || !trackRef.current) return;
+
+      const { top, height } = wrapperRef.current.getBoundingClientRect();
+      const scrolled = -top;
+      const total = height - window.innerHeight;
+
+      if (scrolled <= 0 || total <= 0) {
+        setTranslateX(0);
+        return;
+      }
+
+      const progress = Math.min(scrolled / total, 1);
+
+      // trackRef is on the inner track div; visible area = viewport minus both side paddings (40px each)
+      const trackWidth = trackRef.current.scrollWidth;
+      const visibleWidth = window.innerWidth - 80;
+      const maxTranslate = Math.max(0, trackWidth - visibleWidth);
+
+      setTranslateX(progress * maxTranslate);
     };
 
-    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-
-    const snapToNearest = () => {
-      const start = displayProgressRef.current;
-      const target = Math.round(start);
-      if (Math.abs(start - target) < 0.001) return;
-      const startTime = performance.now();
-      const animate = (now: number) => {
-        const t = Math.min((now - startTime) / SNAP_DURATION_MS, 1);
-        const value = start + (target - start) * easeOut(t);
-        displayProgressRef.current = value;
-        applyProgress(value);
-        if (t < 1) {
-          rafRef.current = requestAnimationFrame(animate);
-        }
-      };
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(animate);
-    };
-
-    const onScroll = () => {
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-      if (scrollTimerRef.current !== null) clearTimeout(scrollTimerRef.current);
-      rafRef.current = requestAnimationFrame(() => {
-        if (!wrapperRef.current) return;
-        const rect = wrapperRef.current.getBoundingClientRect();
-        const scrolled = -rect.top;
-        const scrollPerPanel = window.innerHeight * SCROLL_PER_PANEL_VH;
-        const progress = Math.min(
-          Math.max(scrolled / scrollPerPanel, 0),
-          services.length - 1
-        );
-        displayProgressRef.current = progress;
-        applyProgress(progress);
-        scrollTimerRef.current = setTimeout(snapToNearest, SNAP_IDLE_MS);
-      });
-    };
-
-    applyProgress(0);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-      if (scrollTimerRef.current !== null) clearTimeout(scrollTimerRef.current);
-    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const wrapperHeight =
-    (services.length - 1) * SCROLL_PER_PANEL_VH * 100 + 100 + "vh";
-
   return (
-    <div
-      ref={wrapperRef}
-      className={styles.wrapper}
-      style={{ height: wrapperHeight }}
-    >
+    <div ref={wrapperRef} className={styles.wrapper}>
       <div className={styles.sticky}>
-        <div className={styles.topBar}>
+        {/* Header */}
+        <div className={styles.header}>
           <div className={styles.labelRow}>
-            <span className={styles.square} />
+            <span className={styles.square}></span>
             <span className={styles.label}>Our Services</span>
           </div>
+          <p className={styles.tagline}>
+            We don't just build websites. We build brands that compete, products
+            that scale, and experiences that people remember.
+          </p>
         </div>
 
-        <div className={styles.cardsViewport}>
-          {services.map((service, i) => (
-            <div
-              key={i}
-              ref={(el) => {
-                cardRefs.current[i] = el;
-              }}
-              className={styles.card}
-              style={{ transform: "translateX(" + i * 100 + "%)" }}
-            >
-              <span className={styles.watermark}>{service.number}</span>
-              <div className={styles.cardContent}>
-                <span className={styles.numberLabel}>{service.number}</span>
-                <h3 className={styles.title}>{service.title}</h3>
-                <p className={styles.description}>{service.description}</p>
+        {/* Scrolling Cards Track */}
+        <div className={styles.trackWrapper}>
+          <div
+            ref={trackRef}
+            className={styles.track}
+            style={{ transform: `translateX(-${translateX}px)` }}
+          >
+            {services.map((service, i) => (
+              <div key={i} className={styles.card}>
+                {/* Image */}
+                <div className={styles.imageWrap}>
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className={styles.image}
+                    sizes="25vw"
+                  />
+                </div>
+
+                {/* Text */}
+                <div className={styles.cardBody}>
+                  <h3 className={styles.cardTitle}>{service.title}</h3>
+                  <p className={styles.cardDesc}>{service.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Progress bar */}
-        <div className={styles.progressBar}>
-          {services.map((_, i) => (
-            <div key={i} className={styles.progressSegment}>
-              <div
-                ref={(el) => {
-                  fillRefs.current[i] = el;
-                }}
-                className={styles.progressFill}
-                style={{ transform: "scaleX(0)" }}
-              />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
